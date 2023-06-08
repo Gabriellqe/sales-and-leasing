@@ -1,16 +1,16 @@
 /*
-product_id
-product_ci
-product_name
-product_category
-product_supplier_id
-product_price
-product_warranty
-product_status
-product_label_barcode
-product_printed_label
-product_qty
-product_image
+product_id serial PRIMARY KEY,
+product_ci integer NOT NULL,
+product_name varchar(100) NOT NULL,
+product_category varchar(50) NOT NULL,
+product_supplier_id integer NOT NULL REFERENCES supplier(supplier_id),
+product_price integer NOT NULL,
+product_warranty integer NOT NULL,
+product_status varchar(50) NOT NULL,
+product_label_barcode boolean NOT NULL default false,
+product_printed_label boolean NOT NULL default false,
+product_qty integer NOT NULL default 1,, 
+product_image varchar(50) NOT NULL,
  */
 
 //As a Admin, I want to be able to add a new product to the database
