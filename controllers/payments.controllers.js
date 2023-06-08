@@ -1,0 +1,11 @@
+/*
+payment_id
+payment_date
+payment_concept
+payment_detail
+payment_method
+payment_comment
+payment_total
+payment_supplier_id
+payment_tax
+ */
