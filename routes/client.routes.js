@@ -1,3 +1,15 @@
+const express = require("express");
+const router = express.Router();
+const {
+  createClient,
+  getClients,
+  getClientById,
+  updateClient,
+  deleteClient,
+  updateStatusClient,
+} = require("../controllers/client.controllers");
+
+router.route("/").post(createClient).get(getClients);
 /* 
 POST /api/clients
 Description: Create a new client in the database.
@@ -8,9 +20,10 @@ Response: Newly created client object or success message
 GET /api/clients
 Description: Retrieve all clients from the database.
 Access: Seller and Admin
-Response: Array of client objects
+Response: Array of client objects */
 
-GET /api/clients/:id
+router.route("/:id").get(getClientById).put(updateClient).delete(deleteClient);
+/* GET /api/clients/:id
 Description: Retrieve a single client from the database by ID.
 Access: Seller and Admin
 Parameters: client ID
@@ -28,10 +41,14 @@ Description: Delete a client from the database.
 Access: Seller and Admin
 Parameters: client ID
 Response: Success message
+ */
 
-PATCH /api/clients/:id/status
+router.route("/:id/status").patch(updateStatusClient);
+/* PATCH /api/clients/:id/status
 Description: Update the status of a client in the database.
 Access: Seller and Admin
 Parameters: client ID
 Request body: Updated status information
 Response: Updated client object or success message */
+
+module.exports = router;

@@ -1,3 +1,14 @@
+const express = require("express");
+const router = express.Router();
+const {
+  createPayment,
+  getPayments,
+  getPaymentById,
+  updatePayment,
+  deletePayment,
+} = require("../controllers/payment.controllers");
+
+router.route("/").post(createPayment).get(getPayments);
 /* 
 POST /api/payments
 Description: Create a new payment in the database.
@@ -15,7 +26,14 @@ method: Filter payments by payment method
 supplier: Filter payments by supplier
 tax: Filter payments by tax amount
 Response: Array of payment objects
+*/
 
+router
+  .route("/:id")
+  .get(getPaymentById)
+  .put(updatePayment)
+  .delete(deletePayment);
+/*
 GET /api/payments/:id
 Description: Retrieve a single payment from the database by ID.
 Access: Admin
@@ -34,3 +52,5 @@ Description: Delete a payment from the database.
 Access: Admin
 Parameters: Payment ID
 Response: Success message */
+
+module.exports = router;
