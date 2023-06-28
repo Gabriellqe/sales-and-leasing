@@ -79,6 +79,21 @@ CREATE TABLE return (
     return_status varchar(50) NOT NULL
 );
 
+CREATE TABLE users(
+    user_id serial PRIMARY KEY,
+    user_name varchar(50) NOT NULL,
+    user_email varchar(50) NOT NULL,
+    user_password varchar(50) NOT NULL,
+    user_role varchar(50) NOT NULL,
+    user_active_status boolean NOT NULL default true
+);
+CREATE TABLE user_session(
+    user_session_id serial PRIMARY KEY,
+    user_session_user_id integer NOT NULL REFERENCES users(user_id),
+    user_session_token varchar(50) NOT NULL,
+    user_session_created_at date NOT NULL default CURRENT_DATE
+);
+
 
 
 
